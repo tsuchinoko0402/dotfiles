@@ -1,3 +1,5 @@
 [user]
-	name = OKAZAKI Shogo
-	email = okazaki@zakioka.net
+	name = zakky0402
+	email = shogo.okazaki@linkode.co.jp
+[pull]
+	rebase = false
