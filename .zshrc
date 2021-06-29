@@ -242,3 +242,8 @@ esac
 #########################################
 
 [[ -s /Users/shogo-okazaki/.autojump/etc/profile.d/autojump.sh ]] && source /Users/shogo-okazaki/.autojump/etc/profile.d/autojump.sh
+
+#########################################
+# zsh-autosuggestions
+#########################################
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
