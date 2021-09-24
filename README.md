@@ -29,3 +29,13 @@ dotfile を追加するには以下：
 ```shell
 homesick track dotfiles [追加するファイル1], [追加するファイル2],... 
 ```
+
+## 個別設定
+
+### neovim
+
+最初にインストールする際は、 `.config/nvim/` 配下に入り、以下を実行する：
+
+```shell
+sh ./installer.sh ./dein
+```

@@ -3,6 +3,7 @@ export PATH=$PATH:~/bin
 
 # 環境変数
 export LANG=ja_JP.UTF-8
+export XDG_BASE_HOME='~/.config'
  
 # 色を使用出来るようにする
 autoload -Uz colors
@@ -217,6 +218,9 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
  
+# vim で nvim 呼び出し
+alias vim='nvim'
+
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
 if which pbcopy >/dev/null 2>&1 ; then
