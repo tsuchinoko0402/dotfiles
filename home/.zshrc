@@ -139,8 +139,16 @@ add-zsh-hook precmd _update_vcs_info_msg
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
+# 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# 過去に入力したコマンドの履歴が灰色のサジェストで出る
 zplug "zsh-users/zsh-autosuggestions", defer:2
+# コマンド入力途中で上下キー押したときの過去履歴がいい感じに出るようになる
+zplug "zsh-users/zsh-history-substring-search"
+# 補完強化
+zplug "zsh-users/zsh-completions"
+# 256色表示にする
+zplug "chrissicool/zsh-256color"
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load --verbose
@@ -247,5 +255,8 @@ esac
 # zsh-autosuggestions
 #########################################
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#########################################
+# homeshick の設定
+#########################################
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
