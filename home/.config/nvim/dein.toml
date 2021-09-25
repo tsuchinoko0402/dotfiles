@@ -25,3 +25,5 @@ repo = 'mg979/vim-visual-multi'
 [[plugins]]
 repo = 'cohama/lexima.vim'
 
+[[plugins]]
+repo = 'brglng/vim-im-select'
