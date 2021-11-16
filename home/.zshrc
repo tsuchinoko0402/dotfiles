@@ -224,6 +224,9 @@ alias -g G='| grep'
 # vim で nvim 呼び出し
 alias vim='nvim'
 
+# 矢印キーを使える OCaml の立ち上げ
+alias ocaml='rlwrap ocaml'
+
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
 if which pbcopy >/dev/null 2>&1 ; then
