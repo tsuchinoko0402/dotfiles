@@ -4,7 +4,10 @@ export PATH=$PATH:~/bin
 # 環境変数
 export LANG=ja_JP.UTF-8
 export XDG_BASE_HOME='~/.config'
- 
+
+# OCaml の設定
+eval $(opam env)
+
 # 色を使用出来るようにする
 autoload -Uz colors
 colors
