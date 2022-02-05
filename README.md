@@ -27,7 +27,7 @@ homeshick clone tuchinoko0402/dotfiles
 dotfile を追加するには以下：
 
 ```shell
-homesick track dotfiles [追加するファイル1], [追加するファイル2],... 
+homeshick track dotfiles [追加するファイル1], [追加するファイル2],... 
 ```
 
 ## 個別設定
