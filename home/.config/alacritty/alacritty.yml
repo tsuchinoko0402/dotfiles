@@ -1,0 +1,97 @@
+window:
+  # デカめがいいので
+  dimensions:
+    columns: 200
+    lines: 60
+
+  # macは角丸ウインドウなので余白をとったほうが良い
+  padding:
+    x: 8
+    y: 4
+
+# 少し透過
+background_opacity: 0.7
+
+scrolling:
+  # consoleのlogを10000行まで保持
+  history: 10000
+
+  # スクロール量は3行
+  multiplier: 3
+
+# フォント設定
+# 僕はCicaを利用しているのでお好きなように
+font:
+  normal:
+    family: 'Ricty'
+    style: Regular
+
+  bold:
+    family: 'Ricty'
+    style: Bold
+
+  size: 12.0
+
+  offset:
+    y: 1
+
+  use_thin_strokes: true
+
+# 基本はデフォルトのzshですが、tmuxを起動するように
+# また起動ずみのtmuxがあればattachにする
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "/opt/homebrew/bin/tmux a -t 0 || /opt/homebrew/bin/tmux -u"
+
+# キーバインド
+key_bindings:
+  # wikiのrecommnedをそのままコピーしただけ
+  - { key: Comma,     mods: Command,      command:
+      {program: "sh", args: ["-c","open ~/.config/alacritty/alacritty.yml"]}     }
+  - { key: N,         mods: Command,      action: SpawnNewInstance        }
+  - { key: Space,     mods: Alt,          chars: " "                      }
+  - { key: Back,      mods: Super,   chars: "\x15"                        } # delete word/line
+  - { key: Left,      mods: Alt,     chars: "\x1bb"                       } # one word left
+  - { key: Right,     mods: Alt,     chars: "\x1bf"                       } # one word right
+  - { key: Left,      mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,     mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
+  # tmuxのprefixをCtrl-Qにしているので、その設定
+  # これがないとtmuxのprefixが効かずに、Alacrittyのキーバインドに持っていかれるっぽい？
+  - { key: Q,         mods: Control, chars: "\x11"                        } # tmux prefix
+
+# Colors (Solarized Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#002b36' # base03
+    foreground: '#839496' # base0
+
+  # Cursor colors
+  cursor:
+    text:   '#002b36' # base03
+    cursor: '#839496' # base0
+
+  # Normal colors
+  normal:
+    black:   '#073642' # base02
+    red:     '#dc322f' # red
+    green:   '#859900' # green
+    yellow:  '#b58900' # yellow
+    blue:    '#268bd2' # blue
+    magenta: '#d33682' # magenta
+    cyan:    '#2aa198' # cyan
+    white:   '#eee8d5' # base2
+
+  # Bright colors
+  bright:
+    black:   '#002b36' # base03
+    red:     '#cb4b16' # orange
+    green:   '#586e75' # base01
+    yellow:  '#657b83' # base00
+    blue:    '#839496' # base0
+    magenta: '#6c71c4' # violet
+    cyan:    '#93a1a1' # base1
+    white:   '#fdf6e3' # base3
