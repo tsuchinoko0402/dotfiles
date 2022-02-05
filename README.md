@@ -17,7 +17,7 @@ source .zshrc
 導入したら、以下のコマンドでリポジトリを取得：
 
 ```shell
-homeshick clone stuchinoko0402/dotfiles
+homeshick clone tuchinoko0402/dotfiles
 ```
 
 自動的にホームディレクトリにシンボリックリンクを張ってくれる。
