@@ -10,14 +10,13 @@
 ```shell
 git clone https://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 printf '\nsource "$HOME/.homesick/repos/homeshick/homeshick.sh"' >> $HOME/.zshrc
-printf '\nsource "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"' >> $HOME/.zshrc
 source .zshrc
 ```
 
 導入したら、以下のコマンドでリポジトリを取得：
 
 ```shell
-homeshick clone tuchinoko0402/dotfiles
+homeshick clone tsuchinoko0402/dotfiles
 ```
 
 自動的にホームディレクトリにシンボリックリンクを張ってくれる。
