@@ -23,11 +23,11 @@ scrolling:
 # 僕はCicaを利用しているのでお好きなように
 font:
   normal:
-    family: 'Ricty Diminished'
+    family: 'Ricty for Powerline'
     style: Regular
 
   bold:
-    family: 'Ricty Diminished'
+    family: 'Ricty for Powerline'
     style: Bold
 
   size: 14.0
