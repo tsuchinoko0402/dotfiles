@@ -38,3 +38,7 @@ homeshick track dotfiles [追加するファイル1], [追加するファイル2
 ```shell
 sh ./installer.sh ./dein
 ```
+
+### Brewfile
+
+Homebrew で新たにパッケージをインストールしたら、 `brew bundle dump --global --force` を実行して `.Brewfile` の内容を更新する
