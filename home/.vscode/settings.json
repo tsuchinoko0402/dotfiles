@@ -1,0 +1,29 @@
+{
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "editor.fontFamily": "Ricty for Powerline",
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "git.confirmSync": false,
+    "git.suggestSmartCommit": false,
+    "workbench.preferredDarkColorTheme": "Solarized Dark",
+    "terminal.external.osxExec": "Alacritty.app",
+    "vscode-neovim.highlightGroups.highlights": {
+
+        "Directory": "vim",
+        "IncSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground",
+            "borderColor": "theme.editor.findMatchBorder"
+        },
+        "Search": {
+            "backgroundColor": "theme.editor.findMatchHighlightBackground",
+            "borderColor": "theme.editor.findMatchHighlightBorder"
+        },
+        "Visual": {
+            "backgroundColor": "theme.editor.selectionBackground"
+        },
+        "Conceal": "vim",
+        "Substitute": "vim"
+    },
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/shogo/.config/nvim/init.vim"
+}

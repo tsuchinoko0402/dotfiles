@@ -1,0 +1,10 @@
+[
+    {
+        "key": "cmd+l",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+      "key": "cmd+h",
+      "command": "workbench.action.previousEditor"
+    }
+]
