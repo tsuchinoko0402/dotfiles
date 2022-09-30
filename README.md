@@ -42,3 +42,14 @@ sh ./installer.sh ./dein
 ### Brewfile
 
 Homebrew で新たにパッケージをインストールしたら、 `brew bundle dump --global --force` を実行して `.Brewfile` の内容を更新する
+
+### フォントの設定
+
+`brew bundle` で Ricty for Powerline はインストールされるが、以下の設定をする必要がある：
+```
+# フォントのコピー（cp -f /PATH/TO/RICTY/fonts/Ricty*.ttf ~/Library/Fonts/）
+$ cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+
+# フォントのキャッシュ更新
+$ fc-cache -vf
+```
