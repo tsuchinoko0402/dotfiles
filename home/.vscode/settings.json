@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Gruvbox Dark Hard",
-    "editor.fontFamily": "Ricty for Powerline",
+    "editor.fontFamily": "HackGen Console NFJ",
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,
     "git.confirmSync": false,
@@ -25,5 +25,6 @@
         "Substitute": "vim"
     },
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
-    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/shogo/.config/nvim/init.vim"
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/shogo/.config/nvim/init.vim",
+    "editor.renderWhitespace": "all"
 }

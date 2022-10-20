@@ -23,19 +23,17 @@ scrolling:
 # 僕はCicaを利用しているのでお好きなように
 font:
   normal:
-    family: 'Ricty for Powerline'
+    family: 'HackGen Console NFJ'
     style: Regular
 
   bold:
-    family: 'Ricty for Powerline'
+    family: 'HackGen Console NFJ'
     style: Bold
 
   size: 14.0
 
   offset:
     y: 1
-
-  use_thin_strokes: true
 
 # 基本はデフォルトのzshですが、tmuxを起動するように
 # また起動ずみのtmuxがあればattachにする
