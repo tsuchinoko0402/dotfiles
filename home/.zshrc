@@ -18,10 +18,12 @@ export NVM_DIR="$HOME/.nvm"
 # for zsh-completions
 ########################################
 fpath=(/usr/local/share/zsh-completions $fpath)
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-# 補完機能を有効にする
-autoload -Uz compinit
-compinit -u
+  autoload -Uz compinit
+  compinit
+fi
  
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
