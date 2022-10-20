@@ -43,6 +43,7 @@ brew "tree"
 brew "yarn"
 brew "zplug"
 brew "zsh"
+brew "zsh-completions"
 brew "daipeihust/tap/im-select"
 brew "heroku/brew/heroku"
 brew "sanemat/font/ricty", args: ["with-powerline"]
