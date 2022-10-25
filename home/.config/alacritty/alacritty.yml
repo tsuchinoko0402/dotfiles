@@ -1,7 +1,7 @@
 window:
   # デカめがいいので
   dimensions:
-    columns: 120
+    columns: 220
     lines: 75
 
   # macは角丸ウインドウなので余白をとったほうが良い
@@ -20,7 +20,6 @@ scrolling:
   multiplier: 3
 
 # フォント設定
-# 僕はCicaを利用しているのでお好きなように
 font:
   normal:
     family: 'HackGen Console NFJ'
@@ -35,8 +34,8 @@ font:
   offset:
     y: 1
 
-# 基本はデフォルトのzshですが、tmuxを起動するように
-# また起動ずみのtmuxがあればattachにする
+# 基本はデフォルトのzshだが、tmuxを起動するように設定する
+# また起動済みのtmuxがあればattachにする
 shell:
   program: /usr/local/bin/zsh
   args:
