@@ -82,6 +82,8 @@ function afu-ad-delete-unambiguous-prefix () {
 afu-ad-delete-unambiguous-prefix afu+accept-line
 afu-ad-delete-unambiguous-prefix afu+accept-line-and-down-history
 afu-ad-delete-unambiguous-prefix afu+accept-and-hold
+# 「-azfu-」を表示させない
+zstyle ':auto-fu:var' postdisplay $''
 
 ########################################
 # zplug
@@ -150,10 +152,7 @@ bindkey '^R' history-incremental-pattern-search-backward
  
 ########################################
 # エイリアス
-########################################
-alias la='ls -a'
-alias ll='ls -l'
- 
+######################################## 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -173,19 +172,6 @@ alias vim='nvim'
 # 矢印キーを使える OCaml の立ち上げ
 alias ocaml='rlwrap ocaml'
 
-# C で標準出力をクリップボードにコピーする
-# mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
-if which pbcopy >/dev/null 2>&1 ; then
-# Mac
-alias -g C='| pbcopy'
-elif which xsel >/dev/null 2>&1 ; then
-# Linux
-alias -g C='| xsel --input --clipboard'
-elif which putclip >/dev/null 2>&1 ; then
-# Cygwin
-alias -g C='| putclip'
-fi
-
 # exa 関連
 if [[ $(command -v exa) ]]; then
   alias e='exa --icons --git'
@@ -201,17 +187,6 @@ if [[ $(command -v exa) ]]; then
   alias lta=eta
   alias l='clear && ls'
 fi
-
-#########################################
-# autojump
-#########################################
-
-[[ -s /Users/shogo-okazaki/.autojump/etc/profile.d/autojump.sh ]] && source /Users/shogo-okazaki/.autojump/etc/profile.d/autojump.sh
-
-#########################################
-# zsh-autosuggestions
-#########################################
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #########################################
 # homeshick の設定
