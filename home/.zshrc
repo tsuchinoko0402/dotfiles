@@ -13,66 +13,43 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#=============================
-# source auto-fu.zsh
-#=============================
-if [ -f ~/.zsh/auto-fu.zsh/auto-fu.zsh ]; then
-    source ~/.zsh/auto-fu.zsh/auto-fu.zsh
-    function zle-line-init () {
-	auto-fu-init
-	}
-    zle -N zle-line-init
-    zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate
-fi
+# ヒストリー機能
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
-# auto-fu.zsh での動作をちょっと変えるパッチ
-# delete unambiguous prefix when accepting line
-function afu+delete-unambiguous-prefix () {
-    afu-clearing-maybe
-    local buf; buf="$BUFFER"
-    local bufc; bufc="$buffer_cur"
-    [[ -z "$cursor_new" ]] && cursor_new=-1
-    [[ "$buf[$cursor_new]" == ' ' ]] && return
-    [[ "$buf[$cursor_new]" == '/' ]] && return
-    ((afu_in_p == 1)) && [[ "$buf" != "$bufc" ]] && {
-	there are more than one completion candidates
-	zle afu+complete-word
-	[[ "$buf" == "$BUFFER" ]] && {
-	    the completion suffix was an unambiguous prefix
-	    afu_in_p=0; buf="$bufc"
-	}
-	BUFFER="$buf"
-	buffer_cur="$bufc"
-    }
-}
-zle -N afu+delete-unambiguous-prefix
-function afu-ad-delete-unambiguous-prefix () {
-    local afufun="$1"
-    local code; code=$functions[$afufun]
-    eval "function $afufun () { zle afu+delete-unambiguous-prefix; $code }"
-}
-afu-ad-delete-unambiguous-prefix afu+accept-line
-afu-ad-delete-unambiguous-prefix afu+accept-line-and-down-history
-afu-ad-delete-unambiguous-prefix afu+accept-and-hold
-# 「-azfu-」を表示させない
-zstyle ':auto-fu:var' postdisplay $''
+########################################
+# 補完を有効化する（カーソルで選択できるように）
+########################################
+autoload -U compinit
+compinit
+zstyle ':completion:*:default' menu select=1
 
 ########################################
 # zplug
 ########################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=$(brew --prefix)/opt/zplugg
 source $ZPLUG_HOME/init.zsh
 
 # 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 # 過去に入力したコマンドの履歴が灰色のサジェストで出る
-zplug "zsh-users/zsh-autosuggestions", defer:2
-# コマンド入力途中で上下キー押したときの過去履歴がいい感じに出るようになる
 zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions", defer:2
 # 補完強化
 zplug "zsh-users/zsh-completions"
+# コマンド入力途中で上下キー押したときの過去履歴がいい感じに出るようになる
+zplug "zsh-users/zsh-history-substring-search"
 # 256色表示にする
 zplug "chrissicool/zsh-256color"
+
+# インストールしていないプラグインがあればインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load --verbose
@@ -82,40 +59,40 @@ zplug load --verbose
 ########################################
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
- 
+
 # beep を無効にする
 setopt no_beep
- 
+
 # フローコントロールを無効にする
 setopt no_flow_control
- 
+
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
- 
+
 # ディレクトリ名だけでcdする
 setopt auto_cd
- 
+
 # cd したら自動的にpushdする
 setopt auto_pushd
 
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
- 
+
 # 同時に起動したzshの間でヒストリを共有する
 setopt share_history
- 
+
 # 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
- 
+
 # スペースから始まるコマンド行はヒストリに残さない
 setopt hist_ignore_space
- 
+
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
- 
+
 # 高機能なワイルドカード展開を使用する
 setopt extended_glob
- 
+
 ########################################
 # キーバインド
 ########################################
@@ -128,16 +105,16 @@ bindkey '^R' history-incremental-pattern-search-backward
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
- 
+
 alias mkdir='mkdir -p'
 
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
- 
+
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
- 
+
 # vim で nvim 呼び出し
 alias vim='nvim'
 
@@ -146,18 +123,18 @@ alias ocaml='rlwrap ocaml'
 
 # exa 関連
 if [[ $(command -v exa) ]]; then
-  alias e='exa --icons --git'
-  alias l=e
-  alias ls=e
-  alias ea='exa -a --icons --git'
-  alias la=ea
-  alias ee='exa -aahl --icons --git'
-  alias ll=ee
-  alias et='exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
-  alias lt=et
-  alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
-  alias lta=eta
-  alias l='clear && ls'
+    alias e='exa --icons --git'
+    alias l=e
+    alias ls=e
+    alias ea='exa -a --icons --git'
+    alias la=ea
+    alias ee='exa -aahl --icons --git'
+    alias ll=ee
+    alias et='exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
+    alias lt=et
+    alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
+    alias lta=eta
+    alias l='clear && ls'
 fi
 
 #########################################
