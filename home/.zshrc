@@ -1,6 +1,3 @@
-# スクリプトファイルへのパス通し
-export PATH=$PATH:~/bin
-
 # 環境変数
 export LANG=ja_JP.UTF-8
 export XDG_BASE_HOME='~/.config'
@@ -28,7 +25,7 @@ zstyle ':completion:*:default' menu select=1
 ########################################
 # zplug
 ########################################
-export ZPLUG_HOME=$(brew --prefix)/opt/zplugg
+export ZPLUG_HOME=$(brew --prefix)/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 # 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
@@ -141,8 +138,6 @@ fi
 # homeshick の設定
 #########################################
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-
-export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 # Starship
 eval "$(starship init zsh)"

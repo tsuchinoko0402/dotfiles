@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.colorTheme": "Solarized Dark+",
     "editor.fontFamily": "HackGen Console NFJ",
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 14,
@@ -26,5 +26,6 @@
     },
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.darwin": "/Users/shogo/.config/nvim/init.vim",
-    "editor.renderWhitespace": "all"
+    "editor.renderWhitespace": "all",
+    "security.workspace.trust.untrustedFiles": "open"
 }
