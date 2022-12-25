@@ -1,1 +1,0 @@
-/Users/shogo/.cache/dein/repos/github.com/lambdalisue/fern-git-status.vim/autoload/fern_git_status.vim

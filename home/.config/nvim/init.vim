@@ -3,7 +3,7 @@ set nobackup
 "スワップファイルを作らない
 set noswapfile 
 "init.vimを保存したら自動反映
-autocmd BufWritePost  ~/.config/nvim/init.vim  so ~/.config/nvim/init.vim
+autocmd BufWritePost ~/.config/nvim/init.vim so ~/.config/nvim/init.vim
 "エンコーディング
 set encoding=utf-8
 scriptencoding utf-8
