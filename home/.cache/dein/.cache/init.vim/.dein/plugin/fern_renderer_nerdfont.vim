@@ -1,0 +1,1 @@
+/Users/shogo/.cache/dein/repos/github.com/lambdalisue/fern-renderer-nerdfont.vim/plugin/fern_renderer_nerdfont.vim

@@ -1,0 +1,1 @@
+/Users/shogo/.cache/dein/repos/github.com/lambdalisue/glyph-palette.vim/plugin/glyph_palette.vim
