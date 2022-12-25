@@ -2,28 +2,39 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
+repo = 'neoclide/coc.nvim'
+rev = 'release'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'lambdalisue/fern.vim'
 
 [[plugins]]
-repo = 'othree/html5.vim'
+repo = 'lambdalisue/fern-git-status.vim'
 
 [[plugins]]
-repo = 'hail2u/vim-css3-syntax'
+repo = 'lambdalisue/nerdfont.vim'
 
 [[plugins]]
-repo = 'othree/yajs.vim'
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+hook_add = '''
+  let g:fern#renderer = 'nerdfont'
+'''
 
 [[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
+repo = 'lambdalisue/glyph-palette.vim'
+hook_add = '''
+  augroup my-glyph-palette
+    autocmd! *
+    autocmd FileType fern call glyph_palette#apply()
+    autocmd FileType nerdtree,startify call glyph_palette#apply()
+  augroup END
+'''
 
 [[plugins]]
-repo = 'mg979/vim-visual-multi'
+repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'cohama/lexima.vim'
+repo = 'vim-airline/vim-airline'
 
 [[plugins]]
-repo = 'brglng/vim-im-select'
+repo = 'vim-airline/vim-airline-themes'
