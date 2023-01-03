@@ -4,6 +4,19 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
+merged = 0
+hook_add = '''
+  let g:coc_global_extensions = [
+    \'coc-rust-analyzer',
+    \'coc-docker',
+    \'coc-json',
+    \'coc-markdownlint',
+    \'coc-toml',
+    \'coc-vimlsp',
+    \'coc-jedi',
+    \'coc-diagnostic',
+  \]
+  '''
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
