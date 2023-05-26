@@ -210,6 +210,16 @@ nmap <silent> <space>gy <Plug>(coc-type-definition)
 nmap <silent> <space>gi <Plug>(coc-implementation)
 
 "------------------------------------
+" Telescope の設定
+"------------------------------------
+" ctrl + p で find_files
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+" ctrl + g で live_grep
+nnoremap <C-g> <cmd>Telescope live_grep<cr>
+" ctrl + f で全ファイルから grep
+nnoremap <C-f> <cmd>Telescope frecency<cr>
+
+"------------------------------------
 " dein.vim の設定
 "------------------------------------
 let s:dein_dir = expand('$HOME/.cache/dein')
