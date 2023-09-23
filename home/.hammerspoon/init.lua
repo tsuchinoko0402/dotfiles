@@ -5,7 +5,7 @@ local double_press = require("ctrlDoublePress")
 
 -- double tap で toggle で Aracritty を表示/非表示する
 local open_alacritty = function()
-  local appName = "Alacritty"
+  local appName = "Warp"
   local app = application.get(appName)
   
   if app == nil then

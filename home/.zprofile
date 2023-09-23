@@ -11,3 +11,4 @@ eval "$(pyenv init -)"
 . "$HOME/.cargo/env"
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
