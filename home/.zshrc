@@ -119,21 +119,12 @@ alias vim='nvim'
 # 矢印キーを使える OCaml の立ち上げ
 alias ocaml='rlwrap ocaml'
 
-# exa 関連
-if [[ $(command -v exa) ]]; then
-    alias e='exa --icons --git'
-    alias l=e
-    alias ls=e
-    alias ea='exa -a --icons --git'
-    alias la=ea
-    alias ee='exa -aahl --icons --git'
-    alias ll=ee
-    alias et='exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
-    alias lt=et
-    alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
-    alias lta=eta
-    alias l='clear && ls'
-fi
+# lsd 関連
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
 #########################################
 # homeshick の設定
@@ -150,3 +141,15 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+#########################################
+# nodebrew の設定
+#########################################
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# bun
+export BUN_INSTALL="$HOME/Library/Application Support/reflex/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Created by `userpath` on 2024-06-20 14:50:41
+export PATH="$PATH:/Users/shogo/Library/Application Support/hatch/pythons/3.12/python/bin"

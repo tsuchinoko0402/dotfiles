@@ -12,3 +12,6 @@ eval "$(pyenv init -)"
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Created by `userpath` on 2024-06-20 14:50:41
+export PATH="$PATH:/Users/shogo/Library/Application Support/hatch/pythons/3.12/python/bin"

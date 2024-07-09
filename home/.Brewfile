@@ -7,6 +7,7 @@ tap "sanemat/font"
 brew "openssl@3"
 brew "awscli"
 brew "bash"
+brew "bat"
 brew "ghc"
 brew "cabal-install"
 brew "qemu"
@@ -14,28 +15,34 @@ brew "colima"
 brew "coreutils"
 brew "docker", link: false
 brew "docker-compose"
-brew "exa"
+brew "fd"
 brew "findutils"
 brew "fish"
 brew "harfbuzz"
 brew "fontforge"
+brew "fselect"
 brew "gcc"
 brew "gh"
 brew "gibo"
 brew "git"
+brew "git-delta"
+brew "gitui"
 brew "gnupg"
 brew "gmime"
 brew "go"
 brew "grep"
+brew "grex"
+brew "hatch"
 brew "hugo"
 brew "juliaup", link: false
 brew "libpq"
+brew "lsd"
 brew "mas"
 brew "neomutt"
 brew "neovim"
 brew "nginx"
 brew "nkf"
-brew "node"
+brew "nodebrew"
 brew "notmuch-mutt"
 brew "nvm"
 brew "opam"
@@ -101,6 +108,19 @@ cask "wezterm"
 cask "xquartz"
 cask "zoom"
 cask "zulip"
+mas "1Password 7", id: 1333542190
+mas "GarageBand", id: 682658836
+mas "Goodnotes", id: 1444383602
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Kindle", id: 302584613
+mas "LINE", id: 539883307
+mas "LINE WORKS", id: 6447544433
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "RunCat", id: 1429033973
+mas "Spark", id: 1176895641
+mas "Todoist", id: 585829637
 vscode "astro-build.astro-vscode"
 vscode "esbenp.prettier-vscode"
 vscode "ginfuru.ginfuru-better-solarized-dark-theme"
