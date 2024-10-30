@@ -4,6 +4,11 @@ set nocompatible
 autocmd BufWritePost ~/.config/nvim/init.vim so ~/.config/nvim/init.vim
 
 "------------------------------------
+" 背景色をターミナルの背景色に揃える
+"------------------------------------
+highlight Normal ctermbg=NONE guibg=NONE  "setting the backgroud color to transparent.
+
+"------------------------------------
 " 表示に関する設定
 "------------------------------------
 "行番号を表示
