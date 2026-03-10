@@ -22,6 +22,7 @@ brew "harfbuzz"
 brew "fontforge"
 brew "fselect"
 brew "gcc"
+brew "gemini-cli"
 brew "gh"
 brew "gibo"
 brew "git"
@@ -76,9 +77,8 @@ brew "heroku/brew/heroku"
 brew "sanemat/font/ricty", args: ["with-powerline"]
 cask "alt-tab"
 cask "appcleaner"
-cask "clipy"
+cask "audacity"
 cask "coteditor"
-cask "cursor"
 cask "cyberduck"
 cask "db-browser-for-sqlite"
 cask "dbeaver-community"
@@ -95,14 +95,9 @@ cask "julia-app"
 cask "karabiner-elements"
 cask "keka"
 cask "libreoffice"
-cask "microsoft-auto-update"
-cask "microsoft-excel"
-cask "microsoft-powerpoint"
-cask "microsoft-word"
 cask "musescore"
 cask "obsidian"
 cask "onedrive"
-cask "onyx"
 cask "raycast"
 cask "rectangle"
 cask "slack"
@@ -112,17 +107,18 @@ cask "vnc-viewer"
 cask "wezterm"
 cask "xquartz"
 cask "zoom"
-cask "zulip"
 mas "1Password 7", id: 1333542190
+mas "Compressor", id: 6746516157
 mas "GarageBand", id: 682658836
 mas "Goodnotes", id: 1444383602
 mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
+mas "Keynote", id: 361285480
 mas "Kindle", id: 302584613
 mas "LINE", id: 539883307
 mas "LINE WORKS", id: 6447544433
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Pixelmator Pro", id: 6746662575
 mas "RunCat", id: 1429033973
 mas "Spark", id: 1176895641
 mas "Todoist", id: 585829637
@@ -140,6 +136,7 @@ vscode "ms-ceintl.vscode-language-pack-ja"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
@@ -151,8 +148,10 @@ vscode "ms-vscode.remote-server"
 vscode "ocamllabs.ocaml-platform"
 vscode "ritwickdey.liveserver"
 vscode "rust-lang.rust-analyzer"
+vscode "saoudrizwan.claude-dev"
 vscode "tamasfe.even-better-toml"
 vscode "techer.open-in-browser"
 vscode "unifiedjs.vscode-mdx"
 vscode "vadimcn.vscode-lldb"
 vscode "yzane.markdown-pdf"
+cargo "rust-script"
