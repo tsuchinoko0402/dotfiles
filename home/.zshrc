@@ -142,14 +142,23 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
-#########################################
-# nodebrew の設定
-#########################################
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # bun
 export BUN_INSTALL="$HOME/Library/Application Support/reflex/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Created by `userpath` on 2024-06-20 14:50:41
 export PATH="$PATH:/Users/shogo/Library/Application Support/hatch/pythons/3.12/python/bin"
+
+#########################################
+# Obsidian CLI の設定
+#########################################
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+# Added by Antigravity IDE
+export PATH="/Users/shogo/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/shogo/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/shogo/.antigravity-ide/antigravity-ide/bin:$PATH"

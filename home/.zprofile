@@ -1,5 +1,4 @@
 export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$PATH:~/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
@@ -15,3 +14,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Created by `userpath` on 2024-06-20 14:50:41
 export PATH="$PATH:/Users/shogo/Library/Application Support/hatch/pythons/3.12/python/bin"
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/shogo/.local/bin:$PATH"
