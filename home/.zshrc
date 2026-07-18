@@ -1,3 +1,10 @@
+# herdr 自動起動（Alacrittyかつherdr未起動時）
+if [ -n "$ALACRITTY_WINDOW_ID" ] && [ -z "$HERDR_PANE_ID" ]; then
+    if command -v herdr >/dev/null 2>&1; then
+        exec herdr
+    fi
+fi
+
 # 環境変数
 export LANG=ja_JP.UTF-8
 export XDG_BASE_HOME='~/.config'
