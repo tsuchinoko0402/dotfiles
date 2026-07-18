@@ -9,7 +9,7 @@ local open_alacritty = function()
   local app = application.get(appName)
   
   if app == nil then
-    application.launchOrFocus(appName)
+    application.launchOrFocus("/Applications/Alacritty.app")
   elseif app:isFrontmost() then
     app:hide()
   else
