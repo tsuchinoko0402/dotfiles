@@ -1,156 +1,100 @@
-# Alacritty Configuration
-# Managed by homeshick (dotfiles)
+# Alacritty 設定（~/.config/wezterm/wezterm.lua から移植）
+# タブ・ウインドウ・ペイン操作は herdr（~/.config/herdr/config.toml）に移管済みのため持たない。
+# live_config_reload が既定で有効なので、保存すれば起動中の Alacritty に即反映される。
+
+#=============================
+# 見た目
+#=============================
 
 [window]
-dimensions = { columns = 220, lines = 75 }
-padding = { x = 8, y = 4 }
-opacity = 0.85
-# Note: macOS specific transparent decorations
-decorations = "transparent"
-
-[scrolling]
-history = 10000
-multiplier = 3
+# wezterm の window_background_opacity = 0.8 相当
+opacity = 0.8
+# wezterm の window_decorations = "RESIZE" 相当（タイトルバーなし・リサイズ可）
+decorations = "Buttonless"
 
 [font]
-normal = { family = "HackGen Console NFJ", style = "Regular" }
-bold = { family = "HackGen Console NFJ", style = "Bold" }
 size = 14.0
-offset = { y = 1 }
 
-[bell]
-# macOSの通知でベルを知らせる
-command = { program = "osascript", args = ["-e", "display notification \"Bell rung in terminal\" with title \"Alacritty\""] }
+[font.normal]
+family = "HackGen Console NF"
 
-# キーバインド
-[[keyboard.bindings]]
-key = "Comma"
-mods = "Command"
-command = { program = "sh", args = ["-c", "open ~/.config/alacritty/alacritty.toml"] }
-
-[[keyboard.bindings]]
-key = "Space"
-mods = "Alt"
-chars = " "
-
-# delete word/line, moving, etc.
-[[keyboard.bindings]]
-key = "Back"
-mods = "Super"
-chars = "\u0015"
-
-[[keyboard.bindings]]
-key = "Left"
-mods = "Alt"
-chars = "\u001bb"
-
-[[keyboard.bindings]]
-key = "Right"
-mods = "Alt"
-chars = "\u001bf"
-
-# herdr 用に Command キーを解放 (ReceiveChar)
-[[keyboard.bindings]]
-key = "N"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "W"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "K"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "B"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "T"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Q"
-mods = "Command"
-action = "ReceiveChar"
-
-# cmd+1〜9 を ReceiveChar で透過
-[[keyboard.bindings]]
-key = "Key1"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key2"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key3"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key4"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key5"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key6"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key7"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key8"
-mods = "Command"
-action = "ReceiveChar"
-
-[[keyboard.bindings]]
-key = "Key9"
-mods = "Command"
-action = "ReceiveChar"
-
-# Colors (Solarized Dark)
+# カラーテーマ: Tokyo Night Storm (Gogh)
+# 出典: wezterm 組み込みスキーム（docs/colorschemes/data.json）の同名エントリ
 [colors.primary]
-background = "#002b36"
-foreground = "#839496"
+# wezterm では window_background_gradient = { "#000000" } で背景を黒に上書きしていたため踏襲。
+# テーマ本来の背景色に戻す場合は "#24283b"
+background = "#000000"
+foreground = "#c0caf5"
 
 [colors.cursor]
-text = "#002b36"
-cursor = "#839496"
+text = "#24283b"
+cursor = "#c0caf5"
 
 [colors.normal]
-black = "#073642"
-red = "#dc322f"
-green = "#859900"
-yellow = "#b58900"
-blue = "#268bd2"
-magenta = "#d33682"
-cyan = "#2aa198"
-white = "#eee8d5"
+black = "#414868"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#c0caf5"
 
 [colors.bright]
-black = "#002b36"
-red = "#cb4b16"
-green = "#586e75"
-yellow = "#657b83"
-blue = "#839496"
-magenta = "#6c71c4"
-cyan = "#93a1a1"
-white = "#fdf6e3"
+black = "#414868"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#c0caf5"
+
+#=============================
+# ベル
+#=============================
+# Alacritty は OSC 9（デスクトップ通知）未対応のため、BEL 受信時に macOS 通知で代替する。
+# zsh の補完エラー等のビープでも鳴るので、煩ければこのセクションを削除する。
+[bell]
+command = { program = "/usr/bin/osascript", args = ["-e", "display notification \"ターミナルでベルが鳴りました\" with title \"Alacritty\""] }
+
+#=============================
+# キーバインド
+#=============================
+# herdr は kitty キーボードプロトコルで cmd 付きチョードを受け取る。
+# Alacritty はプロトコルにネイティブ対応（wezterm の enable_kitty_keyboard 相当の設定は不要）だが、
+# Alacritty 自身のデフォルト割り当てが herdr のチョードを横取りするため ReceiveChar で透過させる。
+
+[keyboard]
+bindings = [
+  # ---- herdr チョードの透過（デフォルト割り当ての無効化）----
+  { key = "n", mods = "Command", action = "ReceiveChar" }, # CreateNewWindow → herdr new_workspace
+  { key = "w", mods = "Command", action = "ReceiveChar" }, # Quit → herdr close_pane
+  { key = "k", mods = "Command", action = "ReceiveChar" }, # ClearHistory → herdr previous_agent
+  { key = "b", mods = "Command", action = "ReceiveChar" }, # SearchBackward → herdr last_pane
+  { key = "t", mods = "Command", action = "ReceiveChar" }, # CreateNewTab (macOS ネイティブタブ) → herdr new_tab
+  { key = "q", mods = "Command", action = "ReceiveChar" }, # Quit → 誤爆防止（終了はメニューの Quit から）
+  # Cmd+1..9 は SelectTab1..SelectLastTab → herdr switch_workspace
+  { key = "1", mods = "Command", action = "ReceiveChar" },
+  { key = "2", mods = "Command", action = "ReceiveChar" },
+  { key = "3", mods = "Command", action = "ReceiveChar" },
+  { key = "4", mods = "Command", action = "ReceiveChar" },
+  { key = "5", mods = "Command", action = "ReceiveChar" },
+  { key = "6", mods = "Command", action = "ReceiveChar" },
+  { key = "7", mods = "Command", action = "ReceiveChar" },
+  { key = "8", mods = "Command", action = "ReceiveChar" },
+  { key = "9", mods = "Command", action = "ReceiveChar" },
+
+  # ---- 単語単位の移動・削除 ----
+  # Shift+Opt+左右でカーソルを前後の単語に移動（ESC b / ESC f を送る）
+  { key = "ArrowLeft", mods = "Shift|Alt", chars = "\u001Bb" },
+  { key = "ArrowRight", mods = "Shift|Alt", chars = "\u001Bf" },
+  # Ctrl+Backspace で前の単語を削除（Ctrl+W を送る）
+  { key = "Backspace", mods = "Control", chars = "\u0017" },
+
+  # ---- JIS 配列 Mac の ¥ キー ----
+  # ¥ ではなくバックスラッシュを入力する
+  { key = "¥", chars = "\\" },
+  # Opt を押した場合はバックスラッシュではなく ¥ を入力する
+  { key = "¥", mods = "Alt", chars = "¥" },
+]
