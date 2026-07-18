@@ -8,14 +8,16 @@ local open_alacritty = function()
   local appName = "Alacritty"
   local app = application.get(appName)
   
-  if app == nil then
+  if app == nil or type(app.isFrontmost) ~= "function" then
     application.launchOrFocus("/Applications/Alacritty.app")
   elseif app:isFrontmost() then
     app:hide()
   else
     local active_space = spaces.focusedSpace()
     local alacritty_win = app:focusedWindow()
-    spaces.moveWindowToSpace(alacritty_win, active_space)
+    if alacritty_win then
+      spaces.moveWindowToSpace(alacritty_win, active_space)
+    end
     app:setFrontmost()
   end
 end
