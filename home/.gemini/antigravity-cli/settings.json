@@ -1,4 +1,8 @@
 {
+  "allowNonWorkspaceAccess": true,
+  "editor": "vim",
+  "model": "Gemini 3.5 Flash (High)",
+  "notifications": true,
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -15,5 +19,43 @@
   "statusLine": {
     "type": "command",
     "command": "bash ~/.gemini/antigravity-cli/statusline-command.sh"
-  }
+  },
+  "permissions": {
+    "allow": [
+      "command(mkdir)",
+      "command(git clone)",
+      "command(rm /Users/shogo/.homesick/repos/dotfiles/home/.config/alacritty/alacritty.yml)",
+      "command(rm /Users/shogo/.homesick/repos/dotfiles/home/.config/herdr/default_config.toml)",
+      "command(stat)",
+      "command(chmod +x /Users/shogo/.homesick/repos/dotfiles/home/.claude/hooks/herdr-tab-title.sh /Users/shogo/.homesick/repos/dotfiles/home/.claude/statusline-command.sh)",
+      "command(git status)",
+      "command(rm -rf /Users/shogo/.gemini/antigravity-cli/scratch/herdr)",
+      "command(rm -rf /Users/shogo/.homesick/repos/dotfiles/home/.claude)",
+      "command(chmod +x /Users/shogo/.homesick/repos/dotfiles/home/.gemini/antigravity-cli/hooks/herdr-tab-title.sh /Users/shogo/.gemini/antigravity-cli/statusline-command.sh)",
+      "command(git diff)",
+      "command(git add)",
+      "command(git commit)",
+      "command(ls)",
+      "command(hs)",
+      "command(osascript)",
+      "command(pgrep)",
+      "command(git mv)",
+      "command(mv)",
+      "command(rm -f ~/.config/alacritty/alacritty.yml)",
+      "command(ln)",
+      "command(homeshick)",
+      "command(homesick)",
+      "command(~/.homesick/repos/homeshick/bin/homeshick)",
+      "command(type)",
+      "command(herdr)",
+      "command(ps)",
+      "command(grep)",
+      "command(tail)",
+      "command(git log)"
+    ]
+  },
+  "trustedWorkspaces": [
+    "/Users/shogo/.homesick/repos/dotfiles",
+    "/Users/shogo/develop/obsidian-memo-automations"
+  ]
 }
