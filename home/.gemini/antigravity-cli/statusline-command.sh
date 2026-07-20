@@ -1,6 +1,6 @@
 #!/bin/bash
 # Antigravity CLI (agy) statusline script
-# Shows active model, token usage, context progress bar, and quota limit.
+# Shows active model (with High/Low tier), token usage, context progress bar, and quota limit.
 
 JSON_INPUT=$(cat)
 
@@ -13,6 +13,18 @@ jq -r '
     (if filled > 10 then 10 elif filled < 0 then 0 else filled end) as $f |
     [range($f) | "█"] + [range(10 - $f) | "░"] | join("");
 
+  # Helper to format Model display name and keep High/Low indicator
+  def format_model(name):
+    if (name | contains("High")) then
+      ((name | sub(" \\(High\\)"; "")) + " (High)")
+    elif (name | contains("Low")) then
+      ((name | sub(" \\(Low\\)"; "")) + " (Low)")
+    elif (name | contains("Standard")) then
+      ((name | sub(" \\(Standard\\)"; "")) + " (Std)")
+    else
+      name
+    end;
+
   # Color Escape codes
   "\u001b[0m" as $reset |
   "\u001b[1m" as $bold |
@@ -22,8 +34,8 @@ jq -r '
   "\u001b[36m" as $cyan |
   "\u001b[90m" as $gray |
 
-  # Model Display Name
-  (.model.display_name | sub(" \\(High\\)"; "")) as $model |
+  # Model Display Name (Formatting to keep tier info)
+  format_model(.model.display_name) as $model |
 
   # Token usages
   to_k(.context_window.total_input_tokens) as $in |
