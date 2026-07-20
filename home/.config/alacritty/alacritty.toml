@@ -74,6 +74,8 @@ bindings = [
   { key = "b", mods = "Command", action = "ReceiveChar" }, # SearchBackward → herdr last_pane
   { key = "t", mods = "Command", action = "ReceiveChar" }, # CreateNewTab (macOS ネイティブタブ) → herdr new_tab
   { key = "q", mods = "Command", action = "ReceiveChar" }, # Quit → 誤爆防止（終了はメニューの Quit から）
+  { key = "Comma", mods = "Command", action = "ReceiveChar" }, # Preferences横取り防止 → herdr split_vertical
+  { key = "Period", mods = "Command", action = "ReceiveChar" }, # herdr split_horizontal
   # Cmd+1..9 は SelectTab1..SelectLastTab → herdr switch_workspace
   { key = "1", mods = "Command", action = "ReceiveChar" },
   { key = "2", mods = "Command", action = "ReceiveChar" },
