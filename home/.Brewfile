@@ -71,6 +71,8 @@ brew "grex"
 brew "hatch"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
+# Review-first terminal diff viewer
+brew "hunk"
 # Configurable static site generator
 brew "hugo"
 # Julia installer and version multiplexer
