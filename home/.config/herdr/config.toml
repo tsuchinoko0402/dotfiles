@@ -52,7 +52,7 @@ width = "80%"
 height = "80%"
 
 [[keys.command]]
-key = "cmd+ctrl+d"
+key = "prefix+d"
 type = "popup"
 command = "hunk"
 width = "80%"
