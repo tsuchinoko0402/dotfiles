@@ -54,7 +54,7 @@ height = "80%"
 [[keys.command]]
 key = "prefix+d"
 type = "popup"
-command = "hunk"
+command = "hunk diff"
 width = "80%"
 height = "80%"
 
