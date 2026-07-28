@@ -1,0 +1,10 @@
+{
+  "userSettings": {
+    "globalPermissionGrants": {
+      "allow": [
+        "read_url(developers.cloudflare.com)"
+      ]
+    },
+    "remoteControlHostname": "shougonomac-mini-local-galactic-venus"
+  }
+}
