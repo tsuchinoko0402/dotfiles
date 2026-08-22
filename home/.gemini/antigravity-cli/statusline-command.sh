@@ -1,6 +1,7 @@
 #!/bin/bash
 # Antigravity CLI (agy) statusline script
 # Shows active model (with High/Low tier), execution mode, token usage, context progress bar, and quota limit with reset time.
+# Designed with Color Universal Design (CUD) for accessibility (Cyan for Ctx, Yellow for Quota).
 
 JSON_INPUT=$(cat)
 
@@ -35,26 +36,21 @@ jq -r '
     end;
 
   # @function format_mode
-  # @description 実行モード名に応じた鮮やかで視認性の高いカラー付きタグ文字列を生成する
+  # @description 実行モード名に応じた実態に忠実なカラー付きタグ文字列を生成する
   # @param {string} mode_name - 実行モード名 ("accept-edits", "plan", "default" 等)
-  # @returns {string} フォーマット済みモードタグ（例: " [auto]"）
+  # @returns {string} フォーマット済みモードタグ（例: " [accept-edits]"）
   def format_mode(mode_name):
     "\u001b[0m" as $reset |
     "\u001b[1m" as $bold |
-    "\u001b[93m" as $b_yellow |
+    "\u001b[92m" as $b_green |
     "\u001b[95m" as $b_magenta |
-    "\u001b[96m" as $b_cyan |
     "\u001b[97m" as $b_white |
-    if mode_name == "accept-edits" or mode_name == "auto" then
-      " " + $bold + "[" + $b_magenta + "auto" + $reset + $bold + "]" + $reset
+    if mode_name == "accept-edits" or mode_name == "auto" or mode_name == "auto-edit" then
+      " " + $bold + "[" + $b_green + "accept-edits" + $reset + $bold + "]" + $reset
     elif mode_name == "plan" then
-      " " + $bold + "[" + $b_cyan + "plan" + $reset + $bold + "]" + $reset
-    elif mode_name == "default" or mode_name == "manual" then
-      " " + $bold + "[" + $b_white + "manual" + $reset + $bold + "]" + $reset
-    elif mode_name != null and mode_name != "" then
-      " " + $bold + "[" + $b_yellow + mode_name + $reset + $bold + "]" + $reset
+      " " + $bold + "[" + $b_magenta + "plan" + $reset + $bold + "]" + $reset
     else
-      " " + $bold + "[" + $b_white + "manual" + $reset + $bold + "]" + $reset
+      " " + $bold + "[" + $b_white + "default" + $reset + $bold + "]" + $reset
     end;
 
   # @function format_reset
@@ -76,30 +72,28 @@ jq -r '
       ) catch "")
     end;
 
-  # カラーエスケープシーケンス（ダーク背景でも鮮明に映える高輝度パレットを採用）
+  # カラーパレット（カラーユニバーサルデザイン配慮: 青系と黄系による明瞭な弁別）
   "\u001b[0m" as $reset |
   "\u001b[1m" as $bold |
-  "\u001b[31m" as $red |
-  "\u001b[32m" as $green |
-  "\u001b[33m" as $yellow |
-  "\u001b[92m" as $b_green |
   "\u001b[93m" as $b_yellow |
+  "\u001b[95m" as $b_magenta |
   "\u001b[96m" as $b_cyan |
+  "\u001b[97m" as $b_white |
 
   # モデル表示名
   format_model(.model.display_name) as $model |
 
-  # 現在の実行モード表示（cycle_mode を優先して取得）
+  # 現在の実行モード表示
   format_mode(.cycle_mode // .mode // .agent_mode // "default") as $mode_display |
 
   # トークン消費量
   to_k(.context_window.total_input_tokens) as $in |
   to_k(.context_window.total_output_tokens) as $out |
 
-  # コンテキスト占有率とカラー判定
+  # Ctx: シアン（スカイブルー）基調。逼迫時はマゼンタで警告
   .context_window.used_percentage as $used_pct |
   ($used_pct / 10 | round) as $ctx_filled |
-  (if $used_pct < 30 then $green elif $used_pct < 70 then $yellow else $red end) as $ctx_color |
+  (if $used_pct >= 85 then $b_magenta else $b_cyan end) as $ctx_color |
   (($used_pct * 10 | round / 10 | tostring) + "%") as $ctx_str |
   make_bar($ctx_filled) as $ctx_bar |
 
@@ -111,16 +105,17 @@ jq -r '
     (.quota["gemini-5h"] // .quota["3p-5h"] // .quota["gemini-weekly"] // .quota["3p-weekly"] // {})
   end) as $q_obj |
 
+  # Quota: イエロー（オレンジ）基調。枯渇寸前はマゼンタで警告
   ($q_obj.remaining_fraction // 1.0) as $q_frac |
   ($q_frac * 10 | round) as $quota_filled |
-  (if $q_frac > 0.8 then $green elif $q_frac > 0.3 then $yellow else $red end) as $quota_color |
+  (if $q_frac <= 0.15 then $b_magenta else $b_yellow end) as $quota_color |
   (($q_frac * 100 | round | tostring) + "%") as $quota_str |
   make_bar($quota_filled) as $quota_bar |
 
-  # リセット時刻（鮮やかなイエローで時刻情報をハイライト）
+  # リセット時刻
   format_reset($q_obj.reset_time) as $reset_time_str |
-  (if $reset_time_str != "" then " " + $b_yellow + "(resets " + $reset_time_str + ")" + $reset else "" end) as $reset_display |
+  (if $reset_time_str != "" then " " + $b_white + "(resets " + $reset_time_str + ")" + $reset else "" end) as $reset_display |
 
   # 出力フォーマット
-  "\($bold)[\($b_cyan)\($model)\($reset)\($bold)]\($reset)\($mode_display) \($bold)Usage:\($reset) \($b_green)In:\($reset) \($in) \(" | ")\($b_cyan)Out:\($reset) \($out) \(" | ")\($bold)Ctx:\($reset) \($ctx_color)[\($ctx_bar)] \($ctx_str)\($reset) \(" | ")\($bold)Quota:\($reset) \($quota_color)[\($quota_bar)] \($quota_str)\($reset)\($reset_display)"
+  "\($bold)[\($b_white)\($model)\($reset)\($bold)]\($reset)\($mode_display) \($bold)Usage:\($reset) In: \($in) \(" | ")Out: \($out) \(" | ")\($bold)\($b_cyan)Ctx:\($reset) \($ctx_color)[\($ctx_bar)] \($ctx_str)\($reset) \(" | ")\($bold)\($b_yellow)Quota:\($reset) \($quota_color)[\($quota_bar)] \($quota_str)\($reset)\($reset_display)"
 ' <<< "$JSON_INPUT"
