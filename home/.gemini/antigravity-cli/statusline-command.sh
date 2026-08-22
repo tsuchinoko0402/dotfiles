@@ -1,6 +1,6 @@
 #!/bin/bash
 # Antigravity CLI (agy) statusline script
-# Shows active model (with High/Low tier), token usage, context progress bar, and quota limit with reset time.
+# Shows active model (with High/Low tier), execution mode, token usage, context progress bar, and quota limit with reset time.
 
 JSON_INPUT=$(cat)
 
@@ -34,6 +34,29 @@ jq -r '
       name
     end;
 
+  # @function format_mode
+  # @description 実行モード名に応じた鮮やかで視認性の高いカラー付きタグ文字列を生成する
+  # @param {string} mode_name - 実行モード名 ("accept-edits", "plan", "default" 等)
+  # @returns {string} フォーマット済みモードタグ（例: " [auto]"）
+  def format_mode(mode_name):
+    "\u001b[0m" as $reset |
+    "\u001b[1m" as $bold |
+    "\u001b[93m" as $b_yellow |
+    "\u001b[95m" as $b_magenta |
+    "\u001b[96m" as $b_cyan |
+    "\u001b[97m" as $b_white |
+    if mode_name == "accept-edits" or mode_name == "auto" then
+      " " + $bold + "[" + $b_magenta + "auto" + $reset + $bold + "]" + $reset
+    elif mode_name == "plan" then
+      " " + $bold + "[" + $b_cyan + "plan" + $reset + $bold + "]" + $reset
+    elif mode_name == "default" or mode_name == "manual" then
+      " " + $bold + "[" + $b_white + "manual" + $reset + $bold + "]" + $reset
+    elif mode_name != null and mode_name != "" then
+      " " + $bold + "[" + $b_yellow + mode_name + $reset + $bold + "]" + $reset
+    else
+      " " + $bold + "[" + $b_white + "manual" + $reset + $bold + "]" + $reset
+    end;
+
   # @function format_reset
   # @description ISO8601形式のUTC時刻をローカル時刻に変換してリセット表示用文字列を返す
   # @param {string} iso_str - ISO8601形式のUTC日時文字列
@@ -53,17 +76,21 @@ jq -r '
       ) catch "")
     end;
 
-  # カラーエスケープシーケンス
+  # カラーエスケープシーケンス（ダーク背景でも鮮明に映える高輝度パレットを採用）
   "\u001b[0m" as $reset |
   "\u001b[1m" as $bold |
+  "\u001b[31m" as $red |
   "\u001b[32m" as $green |
   "\u001b[33m" as $yellow |
-  "\u001b[31m" as $red |
-  "\u001b[36m" as $cyan |
-  "\u001b[90m" as $gray |
+  "\u001b[92m" as $b_green |
+  "\u001b[93m" as $b_yellow |
+  "\u001b[96m" as $b_cyan |
 
   # モデル表示名
   format_model(.model.display_name) as $model |
+
+  # 現在の実行モード表示
+  format_mode(.mode // .agent_mode // "default") as $mode_display |
 
   # トークン消費量
   to_k(.context_window.total_input_tokens) as $in |
@@ -90,10 +117,10 @@ jq -r '
   (($q_frac * 100 | round | tostring) + "%") as $quota_str |
   make_bar($quota_filled) as $quota_bar |
 
-  # リセット時刻が存在する場合のみ表示用テキストを組み立てる
+  # リセット時刻（鮮やかなイエローで時刻情報をハイライト）
   format_reset($q_obj.reset_time) as $reset_time_str |
-  (if $reset_time_str != "" then " " + $gray + "(resets " + $reset_time_str + ")" + $reset else "" end) as $reset_display |
+  (if $reset_time_str != "" then " " + $b_yellow + "(resets " + $reset_time_str + ")" + $reset else "" end) as $reset_display |
 
   # 出力フォーマット
-  "\($bold)[\($cyan)\($model)\($reset)\($bold)]\($reset) \($gray)Usage:\($reset) In: \($in) \(" | ")Out: \($out) \(" | ")Ctx: \($ctx_color)[\($ctx_bar)] \($ctx_str)\($reset) \(" | ")Quota: \($quota_color)[\($quota_bar)] \($quota_str)\($reset)\($reset_display)"
+  "\($bold)[\($b_cyan)\($model)\($reset)\($bold)]\($reset)\($mode_display) \($bold)Usage:\($reset) \($b_green)In:\($reset) \($in) \(" | ")\($b_cyan)Out:\($reset) \($out) \(" | ")\($bold)Ctx:\($reset) \($ctx_color)[\($ctx_bar)] \($ctx_str)\($reset) \(" | ")\($bold)Quota:\($reset) \($quota_color)[\($quota_bar)] \($quota_str)\($reset)\($reset_display)"
 ' <<< "$JSON_INPUT"
