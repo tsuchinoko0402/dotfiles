@@ -89,8 +89,8 @@ jq -r '
   # モデル表示名
   format_model(.model.display_name) as $model |
 
-  # 現在の実行モード表示
-  format_mode(.mode // .agent_mode // "default") as $mode_display |
+  # 現在の実行モード表示（cycle_mode を優先して取得）
+  format_mode(.cycle_mode // .mode // .agent_mode // "default") as $mode_display |
 
   # トークン消費量
   to_k(.context_window.total_input_tokens) as $in |
