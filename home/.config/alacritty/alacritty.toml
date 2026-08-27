@@ -7,10 +7,12 @@
 #=============================
 
 [window]
-# wezterm の window_background_opacity = 0.8 相当
+# window_background_opacity = 0.8
 opacity = 0.8
-# wezterm の window_decorations = "RESIZE" 相当（タイトルバーなし・リサイズ可）
+# window_decorations = "RESIZE" 相当（タイトルバーなし・リサイズ可）
 decorations = "Buttonless"
+# Option キーを Alt 修飾として pty に送信し、herdr の ctrl+alt+* バインドを有効化する
+option_as_alt = "Both"
 
 [font]
 size = 14.0
@@ -61,32 +63,9 @@ command = { program = "/usr/bin/osascript", args = ["-e", "display notification 
 #=============================
 # キーバインド
 #=============================
-# herdr は kitty キーボードプロトコルで cmd 付きチョードを受け取る。
-# Alacritty はプロトコルにネイティブ対応（wezterm の enable_kitty_keyboard 相当の設定は不要）だが、
-# Alacritty 自身のデフォルト割り当てが herdr のチョードを横取りするため ReceiveChar で透過させる。
 
 [keyboard]
 bindings = [
-  # ---- herdr チョードの透過（デフォルト割り当ての無効化）----
-  { key = "n", mods = "Command", action = "ReceiveChar" }, # CreateNewWindow → herdr new_workspace
-  { key = "w", mods = "Command", action = "ReceiveChar" }, # Quit → herdr close_pane
-  { key = "k", mods = "Command", action = "ReceiveChar" }, # ClearHistory → herdr previous_agent
-  { key = "b", mods = "Command", action = "ReceiveChar" }, # SearchBackward → herdr last_pane
-  { key = "t", mods = "Command", action = "ReceiveChar" }, # CreateNewTab (macOS ネイティブタブ) → herdr new_tab
-  { key = "q", mods = "Command", action = "ReceiveChar" }, # Quit → 誤爆防止（終了はメニューの Quit から）
-  { key = "Comma", mods = "Command", action = "ReceiveChar" }, # Preferences横取り防止 → herdr split_vertical
-  { key = "Period", mods = "Command", action = "ReceiveChar" }, # herdr split_horizontal
-  # Cmd+1..9 は SelectTab1..SelectLastTab → herdr switch_workspace
-  { key = "1", mods = "Command", action = "ReceiveChar" },
-  { key = "2", mods = "Command", action = "ReceiveChar" },
-  { key = "3", mods = "Command", action = "ReceiveChar" },
-  { key = "4", mods = "Command", action = "ReceiveChar" },
-  { key = "5", mods = "Command", action = "ReceiveChar" },
-  { key = "6", mods = "Command", action = "ReceiveChar" },
-  { key = "7", mods = "Command", action = "ReceiveChar" },
-  { key = "8", mods = "Command", action = "ReceiveChar" },
-  { key = "9", mods = "Command", action = "ReceiveChar" },
-
   # ---- 単語単位の移動・削除 ----
   # Shift+Opt+左右でカーソルを前後の単語に移動（ESC b / ESC f を送る）
   { key = "ArrowLeft", mods = "Shift|Alt", chars = "\u001Bb" },

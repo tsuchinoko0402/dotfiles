@@ -5,51 +5,45 @@ onboarding = false
 [keys]
 prefix = "ctrl+q"
 
-# ワークスペース操作（cmd系）
-new_workspace = "cmd+n"
-new_worktree = "cmd+e"
-switch_workspace = "cmd+1..9"
-previous_workspace = "cmd+["
-next_workspace = "cmd+]"
-workspace_picker = "cmd+p"
-goto = "cmd+g"
-close_workspace = "cmd+d"
+# ワークスペース操作
+new_workspace = "ctrl+alt+n"
+new_worktree = "ctrl+alt+e"
+switch_workspace = "ctrl+alt+1..9"
+previous_workspace = "ctrl+alt+["
+next_workspace = "ctrl+alt+]"
+workspace_picker = "ctrl+alt+p"
+goto = "ctrl+alt+g"
+close_workspace = "ctrl+alt+d"
 
 # エージェント間の移動
-previous_agent = "cmd+k"
-next_agent = "cmd+j"
-open_notification_target = "cmd+o"
-last_pane = "cmd+b"
+previous_agent = "ctrl+alt+k"
+next_agent = "ctrl+alt+j"
+open_notification_target = "ctrl+alt+o"
+last_pane = "ctrl+alt+b"
 
 # タブ・ペイン操作
-new_tab = "cmd+t"
+new_tab = "ctrl+alt+t"
 previous_tab = "shift+left"
 next_tab = "shift+right"
 switch_tab = "prefix+1..9"
-close_pane = "cmd+w"
-split_vertical = "cmd+,"
-split_horizontal = "cmd+."
-focus_pane_left = "cmd+ctrl+h"
-focus_pane_down = "cmd+ctrl+j"
-focus_pane_up = "cmd+ctrl+k"
-focus_pane_right = "cmd+ctrl+l"
-swap_pane_left = "prefix+shift+h"
-swap_pane_down = "prefix+shift+j"
-swap_pane_up = "prefix+shift+k"
-swap_pane_right = "prefix+shift+l"
-resize_mode = "cmd+ctrl+r"
+close_pane = "ctrl+alt+w"
+split_vertical = "ctrl+alt+,"
+split_horizontal = "ctrl+alt+."
+resize_mode = "ctrl+alt+r"
 
 # コピーモード・スクロールバック
-# ※ herdr でのコピーモード開始キーが copy_mode かどうかを検証
-copy_mode = "cmd+y"
+copy_mode = "ctrl+alt+y"
 edit_scrollback = "prefix+e"
 
 [[keys.command]]
 key = "prefix+alt+g"
-type = "popup"
+type = "pane"
 command = "lazygit"
-width = "80%"
-height = "80%"
+
+[[keys.command]]
+key = "prefix+alt+d"
+type = "pane"
+command = "hunk diff"
 
 [[keys.command]]
 key = "prefix+d"
@@ -78,7 +72,7 @@ resume_agents_on_restore = true
 delivery = "herdr"
 
 [experimental]
-pane_history = true
+pane_history = false
 switch_ascii_input_source_in_prefix = true
 reveal_hidden_cursor_for_cjk_ime = true
 cjk_ime_agents = ["claude"]
