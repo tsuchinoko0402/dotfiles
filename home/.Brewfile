@@ -11,8 +11,6 @@ brew "awscli"
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Glorious Glasgow Haskell Compilation System
-brew "ghc"
 # Command-line interface for Cabal and Hackage
 brew "cabal-install"
 # Library for manipulating PNG images
@@ -45,10 +43,10 @@ brew "fontforge"
 brew "fselect"
 # GNU compiler collection
 brew "gcc"
-# Interact with Google Gemini AI models from the command-line
-brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
+# Glorious Glasgow Haskell Compilation System
+brew "ghc"
 # Access GitHub's .gitignore boilerplates
 brew "gibo"
 # Distributed revision control system
@@ -71,10 +69,10 @@ brew "grex"
 brew "hatch"
 # Agent multiplexer that lives in your terminal
 brew "herdr"
-# Review-first terminal diff viewer
-brew "hunk"
 # Configurable static site generator
 brew "hugo"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
 # Julia installer and version multiplexer
 brew "juliaup"
 # Postgres C API library
@@ -220,12 +218,12 @@ cask "rectangle"
 cask "slack"
 # Video game digital distribution service
 cask "steam"
+# Web browser
+cask "thebrowsercompany-dia"
 # Open-source code editor
 cask "visual-studio-code"
 # Remote desktop application focusing on security
 cask "vnc-viewer"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 # Video communication and virtual meeting platform
@@ -245,39 +243,9 @@ mas "Pages", id: 361309726
 mas "RunCat", id: 1429033973
 mas "Spark Desktop", id: 6445813049
 mas "Todoist", id: 585829637
-vscode "astro-build.astro-vscode"
-vscode "bierner.markdown-mermaid"
-vscode "bpruitt-goddard.mermaid-markdown-syntax-highlighting"
-vscode "docker.docker"
-vscode "esbenp.prettier-vscode"
-vscode "ginfuru.ginfuru-better-solarized-dark-theme"
-vscode "github.vscode-github-actions"
-vscode "google.geminicodeassist"
-vscode "julialang.language-julia"
-vscode "ms-azuretools.vscode-containers"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-ceintl.vscode-language-pack-ja"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode-remote.vscode-remote-extensionpack"
-vscode "ms-vscode.makefile-tools"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-vscode.remote-server"
-vscode "ocamllabs.ocaml-platform"
-vscode "ritwickdey.liveserver"
-vscode "rust-lang.rust-analyzer"
-vscode "tamasfe.even-better-toml"
-vscode "techer.open-in-browser"
-vscode "unifiedjs.vscode-mdx"
-vscode "vadimcn.vscode-lldb"
-vscode "yzane.markdown-pdf"
+go "golang.org/x/tools/gopls"
 cargo "rust-script"
+cargo "worker-build"
 npm "blowfish-tools"
 npm "corepack"
 npm "firebase-tools"
