@@ -9,8 +9,6 @@ fi
 export LANG=ja_JP.UTF-8
 export XDG_BASE_HOME='~/.config'
 
-# OCaml の設定
-eval $(opam env)
 
 # nvm の設定
 export NVM_DIR="$HOME/.nvm"
@@ -122,9 +120,6 @@ alias -g G='| grep'
 
 # vim で nvim 呼び出し
 alias vim='nvim'
-
-# 矢印キーを使える OCaml の立ち上げ
-alias ocaml='rlwrap ocaml'
 
 # lsd 関連
 alias ls='lsd'
